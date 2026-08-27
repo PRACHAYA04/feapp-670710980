@@ -1,46 +1,26 @@
-import React from "react";
-import ProfileCard from "./components/ProfileCard";
-import "./App.css";
+import { Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import Movies from './pages/Movies';
+import MovieDetail from './pages/MovieDetail';
+import About from './pages/About';
+import NotFound from './pages/NotFound';
 
-const members = [
-  {
-    id: 1,
-    name: "กรวิช",
-    nickname: "โอม",
-    major: "เทคโนโลยีสารสนเทศ",
-    favorites: ["กาแฟ", "เกม", "เขียนโปรแกรม"],
-  },
-  {
-    id: 2,
-    name: "ศิวกร",
-    nickname: "เจ๋ง",
-    major: "เทคโนโลยีสารสนเทศ",
-    favorites: ["ฟุตบอล", "หมูกระทะ", "เพลง"],
-  },
-  {
-    id: 3,
-    name: "ปราชญา",
-    nickname: "โอดิน",
-    favorites: ["แมว", "ท่องเที่ยว", "ถ่ายรูป"],
-  },
-];
 function App() {
-
   return (
-    <div className="container">
-      <h1>การ์ดสมาชิกกลุ่ม</h1>
-
-      <div className="ProfileCard">
-        {members.map((member) => (
-          <ProfileCard
-            key={member.id}
-            name={member.name}
-            nickname={member.nickname}
-            major={member.major}
-            favorites={member.favorites}
-          />
-        ))}
-      </div>
+    <div className="flex min-h-screen flex-col bg-slate-50">
+      <Navbar />                {/* ← เห็นทุกหน้า */}
+      <main className="flex-1">
+        <Routes>                {/* ← เฉพาะตรงนี้ที่สลับตาม URL */}
+          <Route path="/" element={<Home />} />
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/movies/:id" element={<MovieDetail />} />
+          <Route path="/about" element={<About />} />
+          <Route path="*" element={<NotFound />} />   {/* ← ดักทุกอย่างที่เหลือ ไว้ล่างสุด */}
+        </Routes>
+      </main>
+      <Footer />                {/* ← เห็นทุกหน้า */}
     </div>
   );
 }
