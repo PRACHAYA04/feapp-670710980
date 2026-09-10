@@ -1,7 +1,8 @@
 import React from "react";
 //import { Link } from "react-router-dom";
-import { movies } from "../data/data";
+import { movies } from "../data";
 import MovieCard from "../components/MovieCard";
+import MovieGallery from "../components/MovieGallery";
 
 function Home() {
   return (
@@ -13,6 +14,10 @@ function Home() {
         {movies.slice(0, 3).map((movie) => (
           <MovieCard key={movie.id} title={movie.title} year={movie.year}/>
         ))}
+      </div>
+      <h2 className="mt-8 text-2xl font-bold text-slate-800">ดูหนังเพิ่มเติม</h2>
+      <div className="mx-auto mt-8 max-w-md">
+        <MovieGallery />
       </div>
     </div>  
   );
